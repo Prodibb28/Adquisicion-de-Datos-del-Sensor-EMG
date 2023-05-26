@@ -1,6 +1,6 @@
 # Lectura de Valores Analógicos del Sensor EMG
 
-Este repositorio contiene el código necesario para realizar la lectura de valores analógicos del sensor EMG y enviarlos a Python a través del puerto serial. Los valores leídos se guardarán en un archivo CSV, con un límite máximo de 500 valores.
+Este repositorio contiene el código necesario para realizar la lectura de valores analógicos del sensor EMG usando un arduino UNO y enviarlos a Python a través del puerto serial. Los valores leídos se guardarán en un archivo CSV, con un límite máximo de 500 valores.
 
 ## Requisitos
 
@@ -31,6 +31,9 @@ Para establecer la comunicación entre Arduino y Python a través del puerto ser
 - [Serial Input Basics (Updated)](https://forum.arduino.cc/t/serial-input-basics-updated/382007/3)
 
 El código en Arduino se basa en los principios presentados en ese post para recibir y procesar los datos enviados desde Python.
+
+##Próximas Mejoras
+Para una próxima versión de este proyecto, se tiene planeado implementar el filtro de Kalman para mejorar la precisión y estabilidad de los valores leídos del sensor EMG. Esto permitirá obtener resultados más suaves y filtrados.
 
 ## Contribuciones
 
