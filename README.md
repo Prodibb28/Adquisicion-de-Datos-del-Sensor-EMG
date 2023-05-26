@@ -32,7 +32,7 @@ Para establecer la comunicación entre Arduino y Python a través del puerto ser
 
 El código en Arduino se basa en los principios presentados en ese post para recibir y procesar los datos enviados desde Python.
 
-##Próximas Mejoras
+## Próximas Mejoras
 Para una próxima versión de este proyecto, se tiene planeado implementar el filtro de Kalman para mejorar la precisión y estabilidad de los valores leídos del sensor EMG. Esto permitirá obtener resultados más suaves y filtrados.
 
 ## Contribuciones
