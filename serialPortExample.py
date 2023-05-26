@@ -5,9 +5,10 @@ import csv
 startMarker = '<'
 endMarker = '>'
 dataStarted = False
+dataSave = False
 dataBuf = ""
 messageComplete = False
-measures = []
+reads = []
 
 
 def setupSerial(baudRate, serialPortName):
@@ -72,8 +73,6 @@ def waitForArduino():
     while msg.find("Arduino is ready") == -1:
         msg = recvLikeArduino()
         if not (msg == 'XXX'): 
-          sendToArduino("StartMeasure")
-          measures.append("v#i#t")
           print(msg)
             
 
@@ -85,22 +84,24 @@ def waitForArduino():
 #====================
     # the program
 
-setupSerial(115200, "COM14")
+setupSerial(115200, "COM11")
 count = 0
 prevTime = time.time()
-while True:
-            # check for a reply
-    
+dataSave = False
+while count!=500:
     arduinoReply = recvLikeArduino()
-    if not (arduinoReply == 'XXX' or arduinoReply == 'Finish' ):
-        measures.append(arduinoReply)
-    if (arduinoReply == 'Finish' and count==0):
-        with open("miguel.csv", "a+", newline ='') as csvfile:
-         wr = csv.writer(csvfile, dialect='excel', delimiter=',')
-         print("entro")
-         for x in measures:
-          wr.writerow([x])
-        
+    if not (arduinoReply == 'XXX' ) :
+        reads.append(arduinoReply)
+        print(count)
+        count += 1
+with open("measures.csv", "a+", newline ='') as csvfile:
+        wr = csv.writer(csvfile, dialect='excel', delimiter=',')
+        for x in reads:
+            wr.writerow([x])
+  
+
+  
+
     
 #totalMavIa = [36,25,3,4]
 

@@ -15,19 +15,34 @@
    Note: Make sure to adjust the pin assignment (emgPin) according to your specific wiring 
    configuration.
 */
+const byte numChars = 64;
+char receivedChars[numChars];
+
+boolean newData = false;
+
 
 int emgPin = A1;  // EMG sensor pin (right side)
 
 void setup() {
-  Serial.begin(9600);  // Initialize serial communication
+  Serial.begin(115200);  // Initialize serial communication
+  Serial.println("<Arduino is ready>");
 }
 
 void loop() {
-  // Read the analog value from the EMG sensor
   int emgValue = analogRead(emgPin);
-
-  // Print the EMG value to the serial monitor
-  Serial.println(emgValue);
-
   delay(10);  // Delay for stability
+  newData = true;
+  replyToPython(emgValue);   
+}
+
+
+
+
+void replyToPython(int value) {
+    if (newData == true) {
+        Serial.print("<");
+        Serial.print(value);
+        Serial.println('>');
+        newData = false;
+    }
 }
